@@ -15,20 +15,35 @@ shinyUI(pageWithSidebar(
     selectInput("aggtype","Aggregation Type:",choices=c("None","Day of Month","Hour of Day"))
     ,
     sliderInput("date_range","Date Range %:",
-                min=0,max=100, value = c(20,30))
+                min=0,max=100,step=5, value = c(20,45))
+    ,
+    checkboxInput("abs_rel","Set static min and max demand on Y-axis",FALSE)
+    ,
+    checkboxInput("trend","Decompose Timeseries",FALSE)
+    ,
+    checkboxInput("complex","Fit more complex models",FALSE)
+    
+    
   ),
 
   mainPanel(
      h3(textOutput("Caption1")) ,
-     h3(textOutput("Caption2")) ,
-     h3(textOutput("Caption3")) ,
-     h3(textOutput("Caption4")) ,
      
+    
+    h4(textOutput("Exp1")),
+    plotOutput("agg_plot"),
+    h4(textOutput("Exp2")),
     verbatimTextOutput("summary1"),
-     
-    plotOutput("agg_plot")
-    ,
-    plotOutput("ts_decomp")
+    h4(textOutput("Exp3")),
+    plotOutput("ts_decomp"),
+    h4(textOutput("Exp4")),
+    plotOutput("ts_minus_seasonal")#,
+#     plotOutput("decomp_acf"),
+#     plotOutput("decomp_pacf"),
+#     plotOutput("auto_arima"),
+#     plotOutput("arima_acf"),
+#     plotOutput("arima_pacf")
+    
   )
 ))
 
