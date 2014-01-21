@@ -1,6 +1,7 @@
 library(shiny)
 
 
+##Oh hai!!
 shinyUI(pageWithSidebar(
 
   headerPanel("EnerNOC Data Visualizations"),
@@ -24,7 +25,10 @@ shinyUI(pageWithSidebar(
     ,
     checkboxInput("arima","Fit ARIMA",FALSE)
     ,
-    checkboxInput("easter","Easter Egg",TRUE)
+    checkboxInput("easter","Easter Egg",FALSE)
+    ,
+    helpText("Note: you can speed up the load time of new csv files by deselecting some or all of the last four checkboxes.")
+    
   ),
 
   mainPanel(
@@ -53,7 +57,8 @@ shinyUI(pageWithSidebar(
     h4(textOutput("Exp8")),
     
     h3(textOutput("Caption2")) ,
-    h4(textOutput("Exp9"))
+    h4(textOutput("Exp9")),
+    plotOutput("easter_plot")
   )
 ))
 

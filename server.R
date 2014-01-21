@@ -1,6 +1,7 @@
 library(shiny)
 library(TTR)
 
+##Oh hai!!
 append_datetime = function(ost){
   ost$Year <- substr(ost$dttm_utc,0,4)
   ost$Month <- substr(ost$dttm_utc,6,7)
@@ -271,12 +272,20 @@ shinyServer(function(input,output){
   })
   
   output$Exp9 = renderText({
-    "The ARIMA model above was chosen because it minimized the AIC (Akaike information criterion), a metric that can be used to compare the fit of different ARIMA models (in relative terms, not in absolute terms). In a more sophisticated setting, a custom error metric might be used that incorporated a closer approximation of the cost of the error.  For example, a custom error metric might assign a larger loss when the model underestimated demand versus when the model overestimated demand, because it is more costly to generate additional electricity to meet higher-than-expected demand than it is to reduce electricity output.  The forecasts from the ARIMA model are shown in red alongside the actual demand shown in black."
+    "The Easter holiday is known for wreaking havoc on time series analysis!  Because Easter can fall anywhere from March 22nd to April 25th, holiday-based effects can come in different quarters, months, weeks and days from year to year.  While this electricity demand time series only has one Easter, you can still find an Easter-related anomaly (an Easter Egg, one might say) in the data.  This anomaly shows up on the Friday before, and only in some time series (try 109.csv if you haven’t found one yet). The following plot shows average demand aggregated by hour – typical for all Fridays in the year is plotted in black, and the Friday before Easter (April 6th in 2012) is plotted in red."
   })
   
   output$easter_plot <- renderPlot({
     if(input$easter){
-      agg_plot <- aggregate(ost[ost$Weekday=="Saturday",]$value,by=list(ost[ost$Weekday=="Saturday",]$Hour), FUN=mean)
+      data = ost()
+      agg_plot <- aggregate(data[data$Month=="03" & data$Weekday=="Friday",]$value,by=list(data[data$Month=="03" & data$Weekday=="Friday",]$Hour), FUN=mean)
+      plot(agg_plot,type="p",xlab="Hour of Day",ylab="Average Total Demand",main="Demand Over Time")
+      
+      easter_plot <- aggregate(data[data$Month=="04" & data$Day=="06" & data$Year=="2012",]$value,by=list(data[data$Month=="04" & data$Day=="08" & data$Year=="2012",]$Hour), FUN=mean)
+      par(new=TRUE)
+      plot(easter_plot,xlab="",ylab="",col="red", axes=FALSE)
+      
     } else {}
   })
+  
 })
