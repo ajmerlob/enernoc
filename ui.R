@@ -1,7 +1,6 @@
 library(shiny)
 
 
-##Oh hai!!
 shinyUI(pageWithSidebar(
 
   headerPanel("EnerNOC Data Visualizations"),

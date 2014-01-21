@@ -1,7 +1,6 @@
 library(shiny)
 library(TTR)
 
-##Oh hai!!
 append_datetime = function(ost){
   ost$Year <- substr(ost$dttm_utc,0,4)
   ost$Month <- substr(ost$dttm_utc,6,7)
