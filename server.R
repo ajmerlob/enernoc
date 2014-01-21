@@ -1,5 +1,6 @@
 library(shiny)
 library(TTR)
+library(forecast)
 
 ##Oh hai!!
 append_datetime = function(ost){
