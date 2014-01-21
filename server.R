@@ -272,7 +272,7 @@ shinyServer(function(input,output){
   })
   
   output$Exp9 = renderText({
-    "The Easter holiday is known for wreaking havoc on time series analysis!  Because Easter can fall anywhere from March 22nd to April 25th, holiday-based effects can come in different quarters, months, weeks and days from year to year.  While this electricity demand time series only has one Easter, you can still find an Easter-related anomaly (an Easter Egg, one might say) in the data.  This anomaly shows up on the Friday before, and only in some time series (try 761.csv if you haven’t found one yet). The following plot shows average demand aggregated by hour – typical for all Fridays in the year is plotted in black, and the Friday before Easter (April 6th in 2012) is plotted in red."
+    "The Easter holiday is known for wreaking havoc on time series analysis!  Because Easter can fall anywhere from March 22nd to April 25th, holiday-based effects can come in different quarters, months, weeks and days from year to year.  While this electricity demand time series only has one Easter, you can still find an Easter-related anomaly (an Easter Egg, one might say) in the data.  This anomaly shows up on the Friday before, and only in some time series (try 761.csv if you haven’t found one yet). The following plot shows average demand aggregated by hour – typical for all Fridays in the month of March is plotted in black, and the Friday before Easter (April 6th in 2012) is plotted in red."
   })
   
   output$easter_plot <- renderPlot({
